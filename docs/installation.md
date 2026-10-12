@@ -86,9 +86,11 @@ tail -20 /tmp/cyd_qso.log
 
 The CYD should display contacts once it is connected to the X6100 USB HOST port and synchronization completes.
 
+
 ### Manual installation
 
 The following instructions remain available for operators who prefer to install each file themselves.
+
 ## C. Transfer scripts to the X6100
 
 On the Linux computer, return to the repository root:
