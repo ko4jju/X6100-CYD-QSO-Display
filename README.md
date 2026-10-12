@@ -32,6 +32,21 @@ The X6100 reads its ADIF file and sends selected contact fields to the CYD over 
 
 **Important:** The CYD receives selected QSO fields, **not the complete original ADIF file**. Wireless ADIF download is a future idea, not part of this release.
 
+## Beta X6100 Installer
+
+A beginner-friendly installer is available in the
+[installer folder](installer/).
+
+The installer checks the radio's requirements, backs up
+existing scripts, and installs the automatic QSO monitor.
+
+**Status: Beta.** Compatibility checks have passed on the
+tested X6100, but installation and automatic rollback
+have not yet been fully tested.
+
+For complete instructions, see the
+[installation guide](docs/installation.md).
+
 ## Getting started
 
 Follow the [step-by-step installation guide](docs/installation.md).
