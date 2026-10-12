@@ -51,13 +51,13 @@ For complete instructions, see the
 
 Follow the [step-by-step installation guide](docs/installation.md).
 
-Change the callsign shown on the CYD by editing `cyd/src/station_config.h`:
+**No callsign editing required.**
 
-```cpp
-#define STATION_CALLSIGN "YOURCALL"
-```
+The X6100 automatically reads the operator's callsign from the R1CBU firmware configuration and sends it to the CYD over USB.
 
-Then rebuild and reflash the CYD.
+The display initially shows `NOCALL`. Once connected to the X6100, it automatically displays the configured callsign and QSO contacts.
+
+Changing the callsign in R1CBU does not require rebuilding or reflashing the CYD.
 
 ## Project folders
 
