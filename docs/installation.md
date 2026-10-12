@@ -1,6 +1,6 @@
 # Installation guide
 
-These directions describe the **tested X6100 R1CBU Linux + dual-USB ST7789 CYD** setup. They assume you can use a terminal on a Linux computer and can SSH into the radio.
+These directions describe the **tested X6100 OpenX6100 Linux (R1CBU fork) + dual-USB ST7789 CYD** setup. They assume you can use a terminal on a Linux computer and can SSH into the radio.
 
 > **Do not install or overwrite files on an X6100 that already has a working setup unless you intend to update it.** Back up existing scripts first.
 
@@ -38,7 +38,7 @@ cd X6100-CYD-QSO-Display
 
 ## Easier installation using the beta installer
 
-**Status: Beta.** Compatibility checking has been tested on an X6100 running R1CBU firmware. Full installation and automatic recovery from failures still require testing.
+**Status: Beta.** Compatibility checking has been tested on an X6100 running OpenX6100 firmware. A clean installation and synchronization were successfully tested using KA4NJA's SD card; automatic recovery from failures and startup after reboot have not yet been fully verified.
 
 On the Linux computer, return to the repository root (`cd ..` if you just built the CYD from the `cyd` directory). Then copy the complete installer folder to the X6100:
 
@@ -77,7 +77,7 @@ Check the result:
 tail -20 /tmp/cyd_qso.log
 ```
 
-The CYD should display contacts and the callsign configured in R1CBU once connected to the X6100 USB HOST port and synchronized. Until synchronization, its header shows `NOCALL`.
+The CYD should display contacts and the callsign configured in OpenX6100 once connected to the X6100 USB HOST port and synchronized. Until synchronization, its header shows `NOCALL`.
 
 
 ### Manual installation
@@ -115,7 +115,7 @@ ssh root@X6100
 chmod +x /root/x6100_cyd_run.sh /etc/init.d/S97cyd_qso
 ```
 
-The radio needs `/usr/bin/python3`, the BusyBox `start-stop-daemon` command, and the log file `/mnt/ft_log.adi`. These were present on the tested radio; check your own R1CBU version.
+The radio needs `/usr/bin/python3`, the BusyBox `start-stop-daemon` command, and the log file `/mnt/ft_log.adi`. These were present on the tested radio; check your own OpenX6100 version.
 
 ## E. Plug in the CYD and test
 
@@ -194,7 +194,7 @@ The current serial protocol uses newline-separated `CALLSIGN|<operator>`, `BEGIN
 
 ## SSH Login Information
 
-Tested R1CBU firmware SSH login:
+Tested OpenX6100 firmware SSH login:
 
 - Username: root
 - Default password: 123
