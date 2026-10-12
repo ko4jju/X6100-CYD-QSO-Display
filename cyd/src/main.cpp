@@ -2,7 +2,7 @@
 #include <SPI.h>
 #include <TFT_eSPI.h>
 #include <XPT2046_Touchscreen.h>
-#include "station_config.h"
+// Station callsign arrives from X6100 over USB
 
 #define BL 21
 #define TOUCH_CS 33
@@ -27,6 +27,7 @@ int brightnessIndex = 0;
 const int brightnessLevels[] = {255, 102, 26};
 const char* brightnessNames[] = {"100%", "40%", "10%"};
 
+String stationCall = "NOCALL";
 String rx = "";
 bool receiving = false;
 
@@ -47,7 +48,7 @@ void printAt(int x, int y, String s,
 void draw() {
   tft.fillScreen(BG);
 
-  printAt(8, 7, STATION_CALLSIGN, GREEN, 2);
+  printAt(8, 7, stationCall, GREEN, 2);
   printAt(100, 12, "X6100 QSO LOG");
 
   printAt(264, 5, "DIM", GREEN);
@@ -155,6 +156,25 @@ String field(String line, int index) {
 }
 
 void processLine(String line) {
+  if (line.startsWith("CALLSIGN|")) {
+    String incoming = line.substring(9);
+    incoming.trim();
+    incoming.toUpperCase();
+    if (incoming.length() < 3 || incoming.length() > 12) incoming = "NOCALL";
+    for (unsigned int i = 0; i < incoming.length(); i++) {
+      char c = incoming.charAt(i);
+      if (!((c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || c == '/')) {
+        incoming = "NOCALL";
+        break;
+      }
+    }
+    if (stationCall != incoming) {
+      stationCall = incoming;
+      draw();
+    }
+    return;
+  }
+
   if (line == "BEGIN") {
     receiving = true;
     total = 0;

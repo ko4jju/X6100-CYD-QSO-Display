@@ -5,6 +5,7 @@ import re
 import sys
 import time
 import termios
+import sqlite3
 import tty
 
 LOG = "/mnt/ft_log.adi"
@@ -30,6 +31,19 @@ def detect_port():
 
     raise FileNotFoundError("CYD CH340 USB serial device not found")
 
+
+CALLSIGN_DB = "file:/mnt/params.db?mode=ro"
+
+def read_callsign():
+    try:
+        with sqlite3.connect(CALLSIGN_DB, uri=True, timeout=2) as db:
+            row = db.execute("SELECT val FROM params WHERE name='callsign'").fetchone()
+        call = str(row[0]).strip().upper() if row and row[0] is not None else ""
+        if 3 <= len(call) <= 12 and all(c in "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/" for c in call):
+            return call
+    except (sqlite3.Error, OSError, ValueError):
+        pass
+    return "NOCALL"
 
 MAX_QSOS = 300
 
@@ -117,6 +131,7 @@ def send(records):
         # Allow the CYD serial interface to settle.
         time.sleep(2)
 
+        os.write(fd, ("CALLSIGN|" + read_callsign() + "\n").encode("ascii"))
         os.write(fd, b"BEGIN\n")
         time.sleep(0.1)
 

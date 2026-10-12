@@ -7,6 +7,7 @@ LOG = "/mnt/ft_log.adi"
 PORT = "/dev/ttyUSB0"
 INTERVAL = 15
 
+last_callsign = None
 last_log = None
 last_usb = None
 
@@ -31,7 +32,8 @@ while True:
             usb_info.st_rdev
         )
 
-        if log_state != last_log or usb_state != last_usb:
+        current_callsign = sender.read_callsign()
+        if log_state != last_log or usb_state != last_usb or current_callsign != last_callsign:
             records = sender.read_adif()
 
             print(
@@ -43,6 +45,7 @@ while True:
 
             sender.send(records)
 
+            last_callsign = current_callsign
             last_log = log_state
             last_usb = usb_state
 
