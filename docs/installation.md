@@ -40,13 +40,6 @@ cd X6100-CYD-QSO-Display
 
 **Status: Beta.** Compatibility checking has been tested on an X6100 running R1CBU firmware. Full installation and automatic recovery from failures still require testing.
 
-First, download the project onto a Linux computer:
-
-```bash
-git clone https://github.com/ko4jju/X6100-CYD-QSO-Display.git
-cd X6100-CYD-QSO-Display
-```
-
 Copy the complete installer folder to the X6100:
 
 ```bash
