@@ -16,7 +16,7 @@ cd X6100-CYD-QSO-Display
 
 1. Use the **dual-USB** ESP32 CYD with **ST7789** screen as described in the README.
 2. Connect its **programming USB port** to the Linux computer using a data-capable USB cable.
-3. Open `cyd/src/station_config.h` and change `STATION_CALLSIGN` to your own callsign.
+3. No callsign editing is needed. The display starts with `NOCALL` and automatically receives the operator callsign from the X6100 after connection.
 4. Install PlatformIO Core on the computer if it is not already installed.
 5. Compile from the project's `cyd` directory:
 
@@ -40,7 +40,7 @@ cd X6100-CYD-QSO-Display
 
 **Status: Beta.** Compatibility checking has been tested on an X6100 running R1CBU firmware. Full installation and automatic recovery from failures still require testing.
 
-Copy the complete installer folder to the X6100:
+On the Linux computer, return to the repository root (`cd ..` if you just built the CYD from the `cyd` directory). Then copy the complete installer folder to the X6100:
 
 ```bash
 scp -r installer root@X6100:/tmp/
@@ -77,7 +77,7 @@ Check the result:
 tail -20 /tmp/cyd_qso.log
 ```
 
-The CYD should display contacts once it is connected to the X6100 USB HOST port and synchronization completes.
+The CYD should display contacts and the callsign configured in R1CBU once connected to the X6100 USB HOST port and synchronized. Until synchronization, its header shows `NOCALL`.
 
 
 ### Manual installation
@@ -190,7 +190,7 @@ tail -30 /tmp/cyd_qso.log
 
 ## Notes for developers
 
-The current serial protocol uses newline-separated `BEGIN`, `Q|...`, and `END` records at 115200 baud. The CYD shows the latest 300 contacts, five per page. The radio's original ADIF file is never modified by the sender or watcher.
+The current serial protocol uses newline-separated `CALLSIGN|<operator>`, `BEGIN`, `Q|...`, and `END` records at 115200 baud. The X6100 reads the configured callsign from `/mnt/params.db` (`params` table, `callsign` setting); the CYD displays `NOCALL` until a valid callsign arrives. The CYD shows the latest 300 contacts, five per page. The radio's original ADIF file is never modified by the sender or watcher.
 
 ## SSH Login Information
 
