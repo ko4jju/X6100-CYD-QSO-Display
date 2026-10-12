@@ -36,6 +36,59 @@ cd X6100-CYD-QSO-Display
 
 **Touch warning:** A compiler message about `TOUCH_CS` being undefined in TFT_eSPI is expected; touch is handled by a separate XPT2046 library.
 
+## Easier installation using the beta installer
+
+**Status: Beta.** Compatibility checking has been tested on an X6100 running R1CBU firmware. Full installation and automatic recovery from failures still require testing.
+
+First, download the project onto a Linux computer:
+
+```bash
+git clone https://github.com/ko4jju/X6100-CYD-QSO-Display.git
+cd X6100-CYD-QSO-Display
+```
+
+Copy the complete installer folder to the X6100:
+
+```bash
+scp -r installer root@X6100:/tmp/
+```
+
+Connect to the radio:
+
+```bash
+ssh root@X6100
+```
+
+On the tested firmware, the default SSH password is `123`. Change this password using `passwd` if it is still set to the default.
+
+**The remaining commands run on the X6100.**
+
+Check compatibility without installing anything:
+
+```bash
+sh /tmp/installer/install_x6100.sh --check
+```
+
+If the checks pass, install the QSO monitor:
+
+```bash
+sh /tmp/installer/install_x6100.sh --install
+```
+
+The installer backs up existing scripts, installs the monitor and starts its background service.
+
+Check the result:
+
+```bash
+/etc/init.d/S97cyd_qso status
+tail -20 /tmp/cyd_qso.log
+```
+
+The CYD should display contacts once it is connected to the X6100 USB HOST port and synchronization completes.
+
+### Manual installation
+
+The following instructions remain available for operators who prefer to install each file themselves.
 ## C. Transfer scripts to the X6100
 
 On the Linux computer, return to the repository root:
