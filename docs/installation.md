@@ -11,7 +11,6 @@ git clone https://github.com/ko4jju/X6100-CYD-QSO-Display.git
 cd X6100-CYD-QSO-Display
 ```
 
-*The clone URL will work once the repository has been published.*
 
 ## B. Prepare and flash the CYD
 

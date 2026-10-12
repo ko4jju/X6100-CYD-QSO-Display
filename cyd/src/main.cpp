@@ -274,7 +274,7 @@ void loop() {
   if (touching) {
     TS_Point p = touch.getPoint();
 
-    // Calibration from your finger and stylus tests
+    // Touchscreen calibration values for the tested CYD board
     int x = constrain(
       map(p.x, 410, 3855, 0, 319), 0, 319);
     int y = constrain(

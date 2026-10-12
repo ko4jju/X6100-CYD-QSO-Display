@@ -67,6 +67,23 @@ Built using [R1CBU X6100 firmware](https://github.com/gdyuldin/x6100_gui), [TFT_
 
 Check the upstream projects' licenses when redistributing their configuration or source files.
 
+
+## Photos of the working setup
+
+**X6100 completing an FT8 contact on 17 meters**
+
+![X6100 FT8 contact screen](docs/images/x6100-ft8-contact.jpg)
+
+**CYD QSO list and details**
+
+![CYD QSO contact list](docs/images/cyd-contact-list.jpg)
+
+![CYD QSO detail screen](docs/images/cyd-qso-details.jpg)
+
+**USB connection to the X6100**
+
+![CYD connected to X6100 USB host](docs/images/usb-connected-display.jpg)
+
 ## License
 
 See [LICENSE](LICENSE) for the project's MIT license. Third-party libraries retain their own licenses.
