@@ -143,3 +143,20 @@ tail -30 /tmp/cyd_qso.log
 ## Notes for developers
 
 The current serial protocol uses newline-separated `BEGIN`, `Q|...`, and `END` records at 115200 baud. The CYD shows the latest 300 contacts, five per page. The radio's original ADIF file is never modified by the sender or watcher.
+
+## SSH Login Information
+
+Tested R1CBU firmware SSH login:
+
+- Username: root
+- Default password: 123
+- Hostname: X6100
+
+Connect using: ssh root@X6100
+
+If the hostname does not work, substitute the radio's IP address.
+
+The password will not appear while typing.
+
+SECURITY: Change the default password using the passwd command.
+The default password may differ on other firmware versions.
