@@ -1,6 +1,6 @@
 # X6100 CYD QSO Display
 
-An external touchscreen QSO log display for the **Xiegu X6100** running **R1CBU Linux firmware**, using a **dual-USB ESP32 Cheap Yellow Display (CYD)**.
+An external touchscreen QSO log display for the **Xiegu X6100** running **OpenX6100 Linux firmware** (a fork of R1CBU), using a **dual-USB ESP32 Cheap Yellow Display (CYD)**.
 
 Developed and tested by **KO4JJU**.
 
@@ -12,12 +12,12 @@ Developed and tested by **KO4JJU**.
 - Automatically updates when the ADIF file changes (checks every 15 seconds).
 - Automatically detects the CYD's CH340 USB serial port, even if Linux changes its device number.
 - Retries when the CYD is disconnected and reconnects when it returns.
-- Starts automatically on the tested R1CBU BusyBox system.
+- Starts automatically on the tested OpenX6100 BusyBox system.
 - Works **offline**: no Wi-Fi or internet required.
 
 ## Hardware tested
 
-- Xiegu X6100 running R1CBU firmware.
+- Xiegu X6100 running [OpenX6100 firmware](https://github.com/OpenX6100/x6100_gui), forked from R1CBU.
 - Dual-USB ESP32 CYD, ST7789 320 × 240 screen, XPT2046 touch controller.
 - CH340 USB serial adapter on the CYD (`1a86:7523`).
 - Working USB data cable between CYD and X6100 USB HOST.
@@ -53,11 +53,11 @@ Follow the [step-by-step installation guide](docs/installation.md).
 
 **No callsign editing required.**
 
-The X6100 automatically reads the operator's callsign from the R1CBU firmware configuration and sends it to the CYD over USB.
+The X6100 automatically reads the operator's callsign from the OpenX6100 firmware configuration and sends it to the CYD over USB.
 
 The display initially shows `NOCALL`. Once connected to the X6100, it automatically displays the configured callsign and QSO contacts.
 
-Changing the callsign in R1CBU does not require rebuilding or reflashing the CYD.
+Changing the callsign in OpenX6100 does not require rebuilding or reflashing the CYD.
 
 ## Project folders
 
@@ -71,14 +71,14 @@ Changing the callsign in R1CBU does not require rebuilding or reflashing the CYD
 - Tested with one dual-USB CYD hardware revision.
 - DIM button currently changes the displayed setting but does **not** change physical backlight brightness.
 - Wi-Fi and Bluetooth features are **not implemented**.
-- Automatic startup depends on the tested R1CBU firmware's `/etc/init.d/` boot behavior.
+- Automatic startup depends on the tested OpenX6100 firmware's `/etc/init.d/` boot behavior.
 - If more than one CH340 USB serial adapter is attached, automatic port selection may need adjustment.
 
 ## Credits
 
-This is an independent amateur-radio project. It is not an official Xiegu or R1CBU release.
+This is an independent amateur-radio project. It is not an official Xiegu, OpenX6100, or R1CBU release.
 
-Built using [R1CBU X6100 firmware](https://github.com/gdyuldin/x6100_gui), [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI), and [XPT2046_Touchscreen](https://github.com/PaulStoffregen/XPT2046_Touchscreen). The dual-USB display configuration is based on the [CYD2USB setup](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display).
+Tested with [OpenX6100 firmware](https://github.com/OpenX6100/x6100_gui), a fork of the [original R1CBU project](https://github.com/gdyuldin/x6100_gui), and built using [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI), and [XPT2046_Touchscreen](https://github.com/PaulStoffregen/XPT2046_Touchscreen). The dual-USB display configuration is based on the [CYD2USB setup](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display).
 
 Check the upstream projects' licenses when redistributing their configuration or source files.
 
