@@ -1,0 +1,8 @@
+.pio/
+.venv/
+__pycache__/
+*.pyc
+*.log
+*.adi
+*.adif
+.DS_Store

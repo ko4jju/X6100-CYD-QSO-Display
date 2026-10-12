@@ -1,0 +1,58 @@
+#!/bin/sh
+
+NAME="X6100 CYD QSO Monitor"
+PIDFILE="/run/cyd_qso.pid"
+LOGFILE="/tmp/cyd_qso.log"
+SCRIPT="/root/x6100_cyd_watch.py"
+
+case "$1" in
+    start)
+        echo "Starting $NAME"
+
+        if [ -f "$PIDFILE" ]; then
+            PID="$(cat "$PIDFILE")"
+            if kill -0 "$PID" 2>/dev/null; then
+                echo "Already running (PID $PID)"
+                exit 0
+            fi
+            rm -f "$PIDFILE"
+        fi
+
+        start-stop-daemon -S -b -m \
+            -p "$PIDFILE" \
+            -x /bin/sh -- \
+            /root/x6100_cyd_run.sh
+
+        echo "Start requested"
+        ;;
+
+    stop)
+        echo "Stopping $NAME"
+
+        if [ -f "$PIDFILE" ]; then
+            PID="$(cat "$PIDFILE")"
+            kill "$PID" 2>/dev/null || true
+            rm -f "$PIDFILE"
+        fi
+        ;;
+
+    restart)
+        "$0" stop
+        sleep 1
+        "$0" start
+        ;;
+
+    status)
+        if [ -f "$PIDFILE" ] &&
+           kill -0 "$(cat "$PIDFILE")" 2>/dev/null; then
+            echo "$NAME is running (PID $(cat "$PIDFILE"))"
+        else
+            echo "$NAME is stopped"
+        fi
+        ;;
+
+    *)
+        echo "Usage: $0 {start|stop|restart|status}"
+        exit 1
+        ;;
+esac
