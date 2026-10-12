@@ -1,5 +1,5 @@
 #!/bin/sh
-# X6100 CYD QSO Display installer for R1CBU Buildroot
+# X6100 CYD QSO Display installer for tested OpenX6100 (R1CBU fork) Buildroot
 set -eu
 MODE="${1:---check}"
 case "$MODE" in --check|--install) ;; *) echo 'Usage: sh install_x6100.sh --check|--install' >&2; exit 2 ;; esac
@@ -8,7 +8,7 @@ FILES="$HERE/x6100"
 fail() { echo "ERROR: $*" >&2; exit 1; }
 info() { echo "  $*"; }
 [ "$(id -u)" -eq 0 ] || fail 'Run as root on the X6100'
-[ -x /usr/sbin/x6100_gui ] || fail 'R1CBU GUI not found'
+[ -x /usr/sbin/x6100_gui ] || fail 'OpenX6100 GUI not found'
 [ -f /etc/init.d/rcS ] || fail 'Expected startup system not found'
 [ -d /mnt ] || fail '/mnt directory missing'
 for cmd in python3 cp chmod mkdir date start-stop-daemon mv rm sleep; do
@@ -16,7 +16,7 @@ for cmd in python3 cp chmod mkdir date start-stop-daemon mv rm sleep; do
 done
 python3 -c 'import termios,tty,pathlib' || fail 'Python requirements missing'
 [ -w /root ] && [ -w /etc/init.d ] || fail 'Install locations are not writable'
-info 'R1CBU GUI and required system tools: found'
+info 'OpenX6100 GUI and required system tools: found'
 info 'Firmware version: not verified; other releases untested'
 if [ -f /mnt/ft_log.adi ]; then info 'ADIF log: present'; else info 'ADIF log: absent (monitor will retry)'; fi
 if [ "$MODE" = '--check' ]; then
