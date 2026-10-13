@@ -1,6 +1,6 @@
 # Installation guide
 
-These directions describe the **tested X6100 OpenX6100 Linux (R1CBU fork) + dual-USB ST7789 CYD** setup. They assume you can use a terminal on a Linux computer and can SSH into the radio.
+These directions describe the **X6100 OpenX6100 Linux (R1CBU fork) or Randall 007 X6100-JS8 + dual-USB ST7789 CYD** setup. They assume you can use a terminal on a Linux computer and can SSH into the radio.
 
 > **Do not install or overwrite files on an X6100 that already has a working setup unless you intend to update it.** Back up existing scripts first.
 
@@ -38,7 +38,7 @@ cd X6100-CYD-QSO-Display
 
 ## Easier installation using the beta installer
 
-**Status: Beta.** On an OpenX6100 v1.0.2 SD card freshly erased and flashed, compatibility checking, installation with no ADIF log, CYD synchronization, and automatic monitor startup following a normal physical power-on were tested successfully. Automatic rollback after installation failure remains untested. On the tested X6100, the Linux `reboot` command shut the radio down without powering it back on; use the physical power button to test a normal boot.
+**Status: Beta.** On an OpenX6100 v1.0.2 SD card freshly erased and flashed, compatibility checking, installation with no ADIF log, CYD synchronization, and automatic monitor startup following a normal physical power-on passed. The same installer was also tested on Randall 007 X6100-JS8: compatibility checking, installation, and USB synchronization passed, with KO4JJU and zero QSOs displayed. Actual FT8 QSO logging and reboot startup on Randall's firmware have not been tested. Automatic rollback after a failed installation remains untested. On the tested OpenX6100 setup, the Linux `reboot` command shut the radio down without powering it back on; use the physical power button to test a normal boot.
 
 On the Linux computer, return to the repository root (`cd ..` if you just built the CYD from the `cyd` directory). Then copy the complete installer folder to the X6100:
 
@@ -77,7 +77,7 @@ Check the result:
 tail -20 /tmp/cyd_qso.log
 ```
 
-The CYD should display contacts and the callsign configured in OpenX6100 once connected to the X6100 USB HOST port and synchronized. Until synchronization, its header shows `NOCALL`.
+The CYD should display contacts and the callsign configured in the tested radio firmware once connected to the X6100 USB HOST port and synchronized. Until synchronization, its header shows `NOCALL`.
 
 
 ### Manual installation
@@ -194,7 +194,7 @@ The current serial protocol uses newline-separated `CALLSIGN|<operator>`, `BEGIN
 
 ## SSH Login Information
 
-Tested OpenX6100 firmware SSH login:
+SSH login tested on the OpenX6100 firmware (Randall 007 X6100-JS8 also accepted root SSH login in testing):
 
 - Username: root
 - Default password: 123
