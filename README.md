@@ -18,7 +18,7 @@ Developed and tested by **KO4JJU**.
 ## Hardware tested
 
 - Xiegu X6100 running [OpenX6100 v1.0.2 firmware](https://github.com/OpenX6100/x6100_gui), forked from R1CBU: installation, USB synchronization, and automatic startup after a normal power-on tested.
-- Xiegu X6100 running Randall 007 X6100-JS8 firmware: beta installer, automatic callsign detection, USB synchronization, and zero-contact display tested. An actual FT8 contact and automatic startup after reboot remain untested on this firmware.
+- Xiegu X6100 running Randall 007 X6100-JS8 firmware: beta installer, automatic callsign detection, USB synchronization, and zero-contact display tested. An actual 80-meter FT8 contact was logged and appeared on the CYD (0 to 1 QSO). Automatic startup after reboot remains untested on this firmware.
 - Dual-USB ESP32 CYD, ST7789 320 × 240 screen, XPT2046 touch controller.
 - CH340 USB serial adapter on the CYD (`1a86:7523`).
 - Working USB data cable between CYD and X6100 USB HOST.
@@ -41,7 +41,7 @@ A beginner-friendly installer is available in the
 The installer checks the radio's requirements, backs up
 existing scripts, and installs the automatic QSO monitor.
 
-**Status: Beta.** On OpenX6100 v1.0.2, a clean installation with no ADIF log, USB synchronization, and automatic startup after a normal radio power-on passed. On Randall 007 X6100-JS8, installation and USB synchronization with zero QSOs also passed. Actual FT8 logging and boot startup on Randall's firmware, and automatic rollback after a failed installation, remain untested.
+**Status: Beta.** On OpenX6100 v1.0.2, a clean installation with no ADIF log, USB synchronization, and automatic startup after a normal radio power-on passed. On Randall 007 X6100-JS8, installation and USB synchronization with zero QSOs also passed. An 80-meter FT8 contact was successfully logged and appeared on the CYD using Randall's firmware. Boot startup on Randall's firmware and automatic rollback after a failed installation remain untested.
 
 For complete instructions, see the
 [installation guide](docs/installation.md).
