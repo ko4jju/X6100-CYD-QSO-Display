@@ -1,6 +1,6 @@
 # X6100 CYD QSO Display
 
-An external touchscreen QSO log display for the **Xiegu X6100** running **OpenX6100 Linux firmware** (a fork of R1CBU), using a **dual-USB ESP32 Cheap Yellow Display (CYD)**.
+An external touchscreen QSO log display for the **Xiegu X6100**, tested with **OpenX6100 Linux firmware** (a fork of R1CBU) and **Randall 007 X6100-JS8 firmware**, using a **dual-USB ESP32 Cheap Yellow Display (CYD)**.
 
 Developed and tested by **KO4JJU**.
 
@@ -17,7 +17,8 @@ Developed and tested by **KO4JJU**.
 
 ## Hardware tested
 
-- Xiegu X6100 running [OpenX6100 firmware](https://github.com/OpenX6100/x6100_gui), forked from R1CBU.
+- Xiegu X6100 running [OpenX6100 v1.0.2 firmware](https://github.com/OpenX6100/x6100_gui), forked from R1CBU: installation, USB synchronization, and automatic startup after a normal power-on tested.
+- Xiegu X6100 running Randall 007 X6100-JS8 firmware: beta installer, automatic callsign detection, USB synchronization, and zero-contact display tested. An actual FT8 contact and automatic startup after reboot remain untested on this firmware.
 - Dual-USB ESP32 CYD, ST7789 320 × 240 screen, XPT2046 touch controller.
 - CH340 USB serial adapter on the CYD (`1a86:7523`).
 - Working USB data cable between CYD and X6100 USB HOST.
@@ -40,7 +41,7 @@ A beginner-friendly installer is available in the
 The installer checks the radio's requirements, backs up
 existing scripts, and installs the automatic QSO monitor.
 
-**Status: Beta.** Compatibility checks, a clean installation on an OpenX6100 v1.0.2 SD card with no ADIF log, USB synchronization, and automatic startup after a normal radio power-on have been tested successfully. Automatic rollback following a failed installation has not been tested.
+**Status: Beta.** On OpenX6100 v1.0.2, a clean installation with no ADIF log, USB synchronization, and automatic startup after a normal radio power-on passed. On Randall 007 X6100-JS8, installation and USB synchronization with zero QSOs also passed. Actual FT8 logging and boot startup on Randall's firmware, and automatic rollback after a failed installation, remain untested.
 
 For complete instructions, see the
 [installation guide](docs/installation.md).
@@ -51,11 +52,11 @@ Follow the [step-by-step installation guide](docs/installation.md).
 
 **No callsign editing required.**
 
-The X6100 automatically reads the operator's callsign from the OpenX6100 firmware configuration and sends it to the CYD over USB.
+The X6100 automatically reads the operator's callsign from the radio's configuration database and sends it to the CYD over USB. This was tested with both OpenX6100 v1.0.2 and Randall 007 X6100-JS8.
 
 The display initially shows `NOCALL`. Once connected to the X6100, it automatically displays the configured callsign and QSO contacts.
 
-Changing the callsign in OpenX6100 does not require rebuilding or reflashing the CYD.
+Changing the callsign in the tested radio firmware does not require rebuilding or reflashing the CYD.
 
 ## Project folders
 
@@ -69,7 +70,7 @@ Changing the callsign in OpenX6100 does not require rebuilding or reflashing the
 - Tested with one dual-USB CYD hardware revision.
 - DIM button currently changes the displayed setting but does **not** change physical backlight brightness.
 - Wi-Fi and Bluetooth features are **not implemented**.
-- Automatic startup depends on the tested OpenX6100 firmware's `/etc/init.d/` boot behavior.
+- Automatic startup uses the firmware's `/etc/init.d/` boot behavior. Tested after normal power-on with OpenX6100 v1.0.2; not yet reboot-tested with Randall 007 X6100-JS8.
 - If more than one CH340 USB serial adapter is attached, automatic port selection may need adjustment.
 
 ## Credits
