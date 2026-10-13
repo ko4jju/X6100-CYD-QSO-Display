@@ -54,8 +54,12 @@ TAG = re.compile(
 )
 
 def read_adif():
-    with open(LOG, "rb") as f:
-        data = f.read()
+    try:
+        with open(LOG, "rb") as f:
+            data = f.read()
+    except FileNotFoundError:
+        # A new OpenX6100 installation may not have created its QSO log yet.
+        return []
 
     records = []
     current = {}
