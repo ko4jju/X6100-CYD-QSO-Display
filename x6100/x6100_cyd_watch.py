@@ -16,15 +16,19 @@ print("Checking every 15 seconds", flush=True)
 
 while True:
     try:
-        log_info = os.stat(LOG)
+        try:
+            log_info = os.stat(LOG)
+            log_state = (
+                log_info.st_size,
+                log_info.st_mtime_ns,
+                log_info.st_ino
+            )
+        except FileNotFoundError:
+            # An empty log is normal on a fresh installation.
+            log_state = None
+
         PORT = sender.detect_port()
         usb_info = os.stat(PORT)
-
-        log_state = (
-            log_info.st_size,
-            log_info.st_mtime_ns,
-            log_info.st_ino
-        )
 
         usb_state = (
             usb_info.st_ino,
