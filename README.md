@@ -40,9 +40,7 @@ A beginner-friendly installer is available in the
 The installer checks the radio's requirements, backs up
 existing scripts, and installs the automatic QSO monitor.
 
-**Status: Beta.** Compatibility checks have passed on the
-tested X6100, but installation and automatic rollback
-have not yet been fully tested.
+**Status: Beta.** Compatibility checks, a clean installation on an OpenX6100 v1.0.2 SD card with no ADIF log, USB synchronization, and automatic startup after a normal radio power-on have been tested successfully. Automatic rollback following a failed installation has not been tested.
 
 For complete instructions, see the
 [installation guide](docs/installation.md).
