@@ -38,7 +38,7 @@ cd X6100-CYD-QSO-Display
 
 ## Easier installation using the beta installer
 
-**Status: Beta.** Compatibility checking has been tested on an X6100 running OpenX6100 firmware. A clean installation and synchronization were successfully tested using KA4NJA's SD card; automatic recovery from failures and startup after reboot have not yet been fully verified.
+**Status: Beta.** On an OpenX6100 v1.0.2 SD card freshly erased and flashed, compatibility checking, installation with no ADIF log, CYD synchronization, and automatic monitor startup following a normal physical power-on were tested successfully. Automatic rollback after installation failure remains untested. On the tested X6100, the Linux `reboot` command shut the radio down without powering it back on; use the physical power button to test a normal boot.
 
 On the Linux computer, return to the repository root (`cd ..` if you just built the CYD from the `cyd` directory). Then copy the complete installer folder to the X6100:
 
