@@ -115,7 +115,7 @@ ssh root@X6100
 chmod +x /root/x6100_cyd_run.sh /etc/init.d/S97cyd_qso
 ```
 
-The radio needs `/usr/bin/python3`, the BusyBox `start-stop-daemon` command, and the log file `/mnt/ft_log.adi`. These were present on the tested radio; check your own OpenX6100 version.
+The radio needs `/usr/bin/python3` and the BusyBox `start-stop-daemon` command. A fresh OpenX6100 installation might not yet have `/mnt/ft_log.adi`; this is supported and the CYD will show zero contacts until the log is created.
 
 ## E. Plug in the CYD and test
 
@@ -169,7 +169,7 @@ The tested BusyBox init process starts executable scripts named `S??*` in `/etc/
 
 ## Troubleshooting
 
-**CYD is blank / no contacts:** Check `/mnt/ft_log.adi`, the USB cable, and `/tmp/cyd_qso.log`.
+**CYD shows zero contacts:** This is normal if no contacts have been logged yet. Check `/mnt/ft_log.adi`, the USB cable, and `/tmp/cyd_qso.log` if contacts should be present.
 
 ```bash
 ls -l /mnt/ft_log.adi
